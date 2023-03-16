@@ -1,8 +1,8 @@
 public class Employee {
 
     private static int countId;
-    private int id;
-    private String nameComponents;
+    private final int id;
+    private final String nameComponents;
     private int department;
     private int salary;
 
@@ -17,20 +17,21 @@ public class Employee {
         this.salary = salary;
     }
 
+    @Override
+    public String toString() {
+        return "Id " + id + ", " + nameComponents + ", отдел " + department + ", зарплата " + salary + " р.";
+    }
+
+    public String toStringOneDepartment() {
+        return "Id " + id + ", " + nameComponents + ", зарплата " + salary + " р.";
+    }
+
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNameComponents() {
         return nameComponents;
-    }
-
-    public void setNameComponents(String nameComponents) {
-        this.nameComponents = nameComponents;
     }
 
     public int getDepartment() {
