@@ -14,7 +14,7 @@ public class Main {
         printAllInfo();
         printSeparator();
 
-        System.out.println("Total salary " + getTotalSalary());
+        System.out.println("Total salary " + getTotalSalary() + " р.");
         printSeparator();
 
         System.out.println("Employee with minimal salary: " + findMinSalary());
@@ -23,7 +23,7 @@ public class Main {
         System.out.println("Employee with maximum salary: " + findMaxSalary());
         printSeparator();
 
-        System.out.println("Average salary: " + calculateAverageSalary()+ " р.");
+        System.out.println("Average salary: " + calculateAverageSalary() + " р.");
         printSeparator();
 
         getFioList();
@@ -31,29 +31,29 @@ public class Main {
 
         int percentIndexSalary = 5;
         indexSalary(percentIndexSalary);
-        System.out.println("Total salary after index on " + percentIndexSalary + " percent: " + getTotalSalary());
+        System.out.println("Total salary after indexing on " + percentIndexSalary + " percent: " + getTotalSalary() + " р.");
         printSeparator();
 
         System.out.println("Повышенная сложность");
         printSeparator();
         int targetDepartment = 1;
         if (checkDepartmentNumber(targetDepartment)) {
-            System.out.println("Information for " + targetDepartment + " department:");
+            System.out.println("Information about " + targetDepartment + " department:");
             System.out.println("Employee with minimal salary in " +
-                    targetDepartment + " dep.: " + findMinSalary(targetDepartment));
+                    targetDepartment + " dept.: " + findMinSalary(targetDepartment));
 
             System.out.println("Employee with maximum salary in " +
-                    targetDepartment + " dep.: " + findMaxSalary(targetDepartment));
+                    targetDepartment + " dept.: " + findMaxSalary(targetDepartment));
 
             System.out.println("Total salary in " +
-                    targetDepartment + " dep.: " + getTotalSalary(targetDepartment));
+                    targetDepartment + " dept.: " + getTotalSalary(targetDepartment)  + " р.");
 
             System.out.println("Average salary in " +
-                    targetDepartment + " dep.: " + calculateAverageSalary(targetDepartment));
+                    targetDepartment + " dept.: " + calculateAverageSalary(targetDepartment) + " р.");
 
             indexSalary(percentIndexSalary, targetDepartment);
-            System.out.println("Total salary after index on " + percentIndexSalary + " percent in " +
-                    targetDepartment + " dep.: " + getTotalSalary(targetDepartment));
+            System.out.println("Total salary after indexing on " + percentIndexSalary + " percent in " +
+                    targetDepartment + " dept.: " + getTotalSalary(targetDepartment) + " р.");
 
             System.out.println("Department list: ");
             printAllInfo(targetDepartment);
