@@ -58,7 +58,7 @@ public class Main {
             System.out.println("Department list: ");
             printAllInfo(targetDepartment);
 
-        } else System.out.println("Error department number");
+        } else System.out.println("Неверный номер отдела или не найдено ни одного сотрудника");
         printSeparator();
 
         int targetSalary = calculateAverageSalary();
@@ -88,13 +88,17 @@ public class Main {
     }
 
     static boolean checkDepartmentNumber(int department) {
-        return department >= 1 && department <= 5;
+        for (Employee anyEmp : employee) {
+            if (anyEmp.getDepartment() == department)
+                return true;
+        }
+        return false;
     }
 
     static void printAllInfo() {
         //Получить список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString))
         for (Employee anyEmp : employee) {
-            System.out.println(anyEmp.toString());
+            System.out.println(anyEmp);
         }
     }
 
@@ -158,17 +162,21 @@ public class Main {
 
     static Employee findMinSalary(int department) {
         //Найти сотрудника с минимальной зарплатой в отделе
-            //for start set employee with max salary in whole company
-            int minSalary = findMaxSalary().getSalary();
-            Employee employeeMinSalary = findMaxSalary();
+            int minSalary = 0;
+            Employee employeeMinSalary = null;
 
             for (Employee anyEmp : employee) {
-                if ((anyEmp.getDepartment() == department) && (minSalary > anyEmp.getSalary())) {
-                    minSalary = anyEmp.getSalary();
-                    employeeMinSalary = anyEmp;
+                if (anyEmp.getDepartment() == department) {
+                    if (minSalary == 0) {
+                        minSalary = anyEmp.getSalary();
+                        employeeMinSalary = anyEmp;
+                    } else if (minSalary > anyEmp.getSalary()) {
+                        minSalary = anyEmp.getSalary();
+                        employeeMinSalary = anyEmp;
+                    }
                 }
             }
-            return employeeMinSalary;
+        return employeeMinSalary;
     }
 
     static Employee findMaxSalary() {
@@ -185,18 +193,22 @@ public class Main {
     }
 
     static Employee findMaxSalary(int department) {
-        //Найти сотрудника с максимальной зарплатой  в отделе
-            //for start set employee with min salary in whole company
-            int maxSalary = findMinSalary().getSalary();
-            Employee employeeMaxSalary = findMinSalary();
+        //Найти сотрудника с максимальной зарплатой в отделе
+        int maxSalary = 0;
+        Employee employeeMaxSalary = null;
 
-            for (Employee anyEmp : employee) {
-                if ((anyEmp.getDepartment() == department) && (maxSalary < anyEmp.getSalary())) {
+        for (Employee anyEmp : employee) {
+            if (anyEmp.getDepartment() == department) {
+                if (maxSalary == 0) {
+                    maxSalary = anyEmp.getSalary();
+                    employeeMaxSalary = anyEmp;
+                } else if (maxSalary < anyEmp.getSalary()) {
                     maxSalary = anyEmp.getSalary();
                     employeeMaxSalary = anyEmp;
                 }
             }
-            return employeeMaxSalary;
+        }
+        return employeeMaxSalary;
     }
 
     static int calculateAverageSalary() {
@@ -224,10 +236,10 @@ public class Main {
     static void indexSalary(int percent) {
         //Проиндексировать зарплату (вызвать изменение зарплат у всех сотрудников на величину аргумента в %)
         int tempSalary;
-        double persentD;
+        double persentD = (double) percent / 100;
+
         for (Employee anyEmp : employee) {
             tempSalary = anyEmp.getSalary();
-            persentD = (double) percent / 100;
             tempSalary *= (1 + persentD);
             anyEmp.setSalary(tempSalary);
         }

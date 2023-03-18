@@ -6,7 +6,7 @@ public class Employee {
     private int department;
     private int salary;
 
-    public int incrementId () {
+    private static int incrementId () {
         return ++countId;
     }
 
