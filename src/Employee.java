@@ -19,7 +19,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Id " + id + ", " + nameComponents + ", отдел " + department + ", зарплата " + salary + " р.";
+        return "Id " + id + ", " + nameComponents + ", отдел " + department + ", зарплата - " + salary + " р.";
     }
 
     public String toStringOneDepartment() {

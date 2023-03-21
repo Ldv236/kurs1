@@ -29,14 +29,14 @@ public class Main {
         getFioList();
         printSeparator();
 
-        int percentIndexSalary = 5;
+        int percentIndexSalary = 10;
         indexSalary(percentIndexSalary);
         System.out.println("Total salary after indexing on " + percentIndexSalary + " percent: " + getTotalSalary() + " р.");
         printSeparator();
 
         System.out.println("Повышенная сложность");
         printSeparator();
-        int targetDepartment = 1;
+        int targetDepartment = 2;
         if (checkDepartmentNumber(targetDepartment)) {
             System.out.println("Information about " + targetDepartment + " department:");
             System.out.println("Employee with minimal salary in " +
@@ -62,8 +62,8 @@ public class Main {
         printSeparator();
 
         int targetSalary = calculateAverageSalary();
-            printAllInfo(targetSalary, true);
-            printAllInfo(targetSalary, false);
+            printAllInfoCheckSalary(targetSalary, true);
+            printAllInfoCheckSalary(targetSalary, false);
     }
 
     static void fillEmployeeArray() {
@@ -111,18 +111,18 @@ public class Main {
         }
     }
 
-    static void printAllInfo(int salary, boolean findUpperSalary) {
+    static void printAllInfoCheckSalary(int salary, boolean findUpperSalary) {
         //Получить список всех сотрудников со всеми имеющимися по ним данными (вывести в консоль значения всех полей (toString))
         if (findUpperSalary) {
             System.out.println("Employees have less salary: ");
             for (Employee anyEmp : employee) {
-                if (anyEmp.getSalary() > salary)
+                if (anyEmp.getSalary() < salary)
                     System.out.println(anyEmp.toStringOneDepartment());
             }
         } else {
             System.out.println("Employees have higher salary: ");
             for (Employee anyEmp : employee) {
-                if (anyEmp.getSalary() < salary)
+                if (anyEmp.getSalary() > salary)
                     System.out.println(anyEmp.toStringOneDepartment());
             }
         }
@@ -162,15 +162,12 @@ public class Main {
 
     static Employee findMinSalary(int department) {
         //Найти сотрудника с минимальной зарплатой в отделе
-            int minSalary = 0;
+            int minSalary = Integer.MAX_VALUE;
             Employee employeeMinSalary = null;
 
             for (Employee anyEmp : employee) {
                 if (anyEmp.getDepartment() == department) {
-                    if (minSalary == 0) {
-                        minSalary = anyEmp.getSalary();
-                        employeeMinSalary = anyEmp;
-                    } else if (minSalary > anyEmp.getSalary()) {
+                    if  (minSalary > anyEmp.getSalary()) {
                         minSalary = anyEmp.getSalary();
                         employeeMinSalary = anyEmp;
                     }
@@ -199,10 +196,7 @@ public class Main {
 
         for (Employee anyEmp : employee) {
             if (anyEmp.getDepartment() == department) {
-                if (maxSalary == 0) {
-                    maxSalary = anyEmp.getSalary();
-                    employeeMaxSalary = anyEmp;
-                } else if (maxSalary < anyEmp.getSalary()) {
+                if ((maxSalary == 0) || (maxSalary < anyEmp.getSalary())) {
                     maxSalary = anyEmp.getSalary();
                     employeeMaxSalary = anyEmp;
                 }
