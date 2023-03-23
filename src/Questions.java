@@ -43,6 +43,7 @@ public class Questions {
         String str1 = "asdsa";
         String str2 = "asddsa";
         String str3 = "asdfg";
+        char chchchar = str1.charAt(1);
 
         char[] charArray = str1.toCharArray();
         System.out.println(checkPalindrome(charArray));
@@ -53,10 +54,16 @@ public class Questions {
         for (int i = 0; i < chars.length / 2; i++) {
             if (chars[i] != chars[chars.length - 1 - i]) {
                 return false;
+
             }
         }
         return true;
     }
 
-
+    /*
+    Пару моментов подсвечу:
+    Строку не обязательно приводить к массиву. Можно воспользоваться методом charAt у строки.
+    Проверка на длину в начале тоже не обязательная. Для строк длиною 0 и 1 цикл просто не выполнится и сразу вернётся true.
+    Ну и по мелочи - забыл закрывающую круглую скобку в условном операторе
+    */
 }
